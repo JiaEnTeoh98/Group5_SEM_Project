@@ -21,7 +21,7 @@ if (isset($_POST['submit'])) {
     </div>
 
     <div class="mx-auto" style="width: 90%">
-        <h5>CustomerHomepage > TrackingList > Feedback</h5>
+        <h5>Customer Homepage > TrackingList > Feedback</h5>
         <hr>
         <h1 align="center">Rate Our Services</h1>
         <table border="2" align="center" width="50%" height="20%">
