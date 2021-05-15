@@ -41,6 +41,13 @@ class TrackingModel
         return DB::run($sql, $args);
     }
 
+    function viewCompleted()
+    {
+        $sql = "select * from Tracking join customer on(Tracking.Cus_ID = customer.Cus_ID) inner join order1 on Tracking.Ord_ID=order1.Ord_ID inner join service on order1.Service_ID=service.Service_ID inner join sp on sp.sp_id=service.sp_id where RunStatus='accepted' AND R_ID=:rid and CusStatus LIKE 'Completed'";
+        $args = [':rid' => $this->R_ID];
+        return DB::run($sql, $args);
+    }
+
     function runAccept()
     {
         $sql = "update Tracking set RunStatus=:RunStatus, R_ID=:rid where TrackID=:TrackID";

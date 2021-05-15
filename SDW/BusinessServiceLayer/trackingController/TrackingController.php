@@ -40,6 +40,13 @@ class TrackingController
         return $Tracking->viewAccepted();
     }
 
+    function viewCompleted()
+    {
+        $Tracking = new TrackingModel();
+        $Tracking->R_ID = $_SESSION['Runner_ID'];
+        return $Tracking->viewCompleted();
+    }
+
     function runAccept()
     {
         $Tracking = new TrackingModel();
