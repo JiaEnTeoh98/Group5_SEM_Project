@@ -45,7 +45,7 @@
                 </a>
             </li>
             <li class="nav-item justify-content-center align-self-center px-5">
-                <a href='/sdw/ApplicationLayer/userProfileView/CusLogin.php'>
+                <a href='/sdw/ApplicationLayer/userProfileView/CusLogout.php'>
                     <img src="/sdw/src/img/signout.png" />
                 </a></li>
         </ul>
