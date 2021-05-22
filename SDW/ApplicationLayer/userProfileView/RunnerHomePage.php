@@ -14,7 +14,7 @@
                 </a>
             </li>
             <li class="nav-item justify-content-center align-self-center px-5">
-                <a href='/sdw/ApplicationLayer/userProfileView/RunnerLogin.php'
+                <a href='/sdw/ApplicationLayer/userProfileView/RunnerLogout.php'
                     style="font-size: 20px; color: lightgreen;" class="nav-link">
                     <img src="/sdw/src/img/signout.png" /></a></li>
         </ul>
