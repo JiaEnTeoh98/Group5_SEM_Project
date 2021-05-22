@@ -30,7 +30,7 @@ if (isset($_POST['update'])) {
                     </a>
                 </li>
                 <li class="nav-item justify-content-center align-self-center px-5">
-                    <a href='/sdw/ApplicationLayer/userProfileView/SPLogin.php'
+                    <a href='/sdw/ApplicationLayer/userProfileView/SPLogout.php'
                         style="font-size: 20px; color: lightgreen;" class="nav-link">
                         <img src="/sdw/src/img/signout.png" /></a></li>
             </ul>
