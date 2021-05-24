@@ -84,6 +84,7 @@ class TrackingController
         }
         }
         elseif ($Status->checkProgress()==0)
+        {
             if ($Status->updateProgress()) {
             $message = "Success Update!";
             echo "<script type='text/javascript'>alert('$message');
