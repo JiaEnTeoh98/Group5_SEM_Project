@@ -71,6 +71,24 @@ class TrackingModel
         return $count;
     }
 
+    function checkProgress()
+    {
+        $sql = "select * from Status where TrackID=:TrackID and TrackProcess=:TrackProcess" ;
+        $args = [':TrackID' => $this->TrackID, ':TrackProcess' => $this->TrackProcess];
+        $stmt = DB::run($sql, $args);
+        $count = $stmt->rowCount();
+        return $count;
+    }
+
+    function initialUpdate()
+    {
+        $sql = "select * from Status where TrackID=:TrackID" ;
+        $args = [':TrackID' => $this->TrackID];
+        $stmt = DB::run($sql, $args);
+        $count = $stmt->rowCount();
+        return $count;
+    }
+
     function updateDeliveryStatus()
     {
         $sql = "update Tracking set CusStatus='Completed' where TrackID=:trackID";
