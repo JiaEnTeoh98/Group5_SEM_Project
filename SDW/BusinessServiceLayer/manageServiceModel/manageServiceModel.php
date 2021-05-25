@@ -32,8 +32,14 @@ class ServiceManagementModel
     //edit service in SPEditService.php
     function editService()
     {
-        $sql = "update service set S_Name=:sname, S_Stock=:sstock, Unit_Price=:unitprice, S_Desc=:sdesc, S_Photo=:sphoto where Service_ID=:ser_id";
-        $args = [':sname' => $this->S_Name, ':sstock' => $this->S_Stock, ':unitprice' => $this->Unit_Price, ':sdesc' => $this->S_Desc, ':sphoto' => $this->S_Photo, ':ser_id' => $this->Service_ID];
+        if(!empty($_FILES['sphoto']['tmp_name'])){
+            $sql2="update service set S_Photo=:sphoto where Service_ID=:ser_id";
+            $args2=[':sphoto' => $this->S_Photo, ':ser_id' => $this->Service_ID];
+            DB::run($sql2, $args2);
+        }
+        
+        $sql = "update service set S_Name=:sname, S_Stock=:sstock, Unit_Price=:unitprice, S_Desc=:sdesc where Service_ID=:ser_id";
+        $args = [':sname' => $this->S_Name, ':sstock' => $this->S_Stock, ':unitprice' => $this->Unit_Price, ':sdesc' => $this->S_Desc, ':ser_id' => $this->Service_ID];
         DB::run($sql, $args);
         $sql1 = "update order1 set Unit_Price=:unitprice where Service_ID=:ser_id and p_status=0";
         $args1 = [':unitprice' => $this->Unit_Price, ':ser_id' => $this->Service_ID];
