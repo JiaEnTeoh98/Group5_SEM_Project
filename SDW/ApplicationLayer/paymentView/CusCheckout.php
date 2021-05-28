@@ -14,9 +14,10 @@ $subtotal = 0;
 <html>
 
 <head>
-    <script src="https://www.paypal.com/sdk/js?client-id=AS2yPDgeIthzwW_hXhYjaTTLLBI6o1f8vjV2H8KcgaPt_S8EP-xc59heqBhazRhqMvdWlYkg17-tYbq8&currency=MYR">
+<script src="https://www.paypal.com/sdk/js?client-id=AS2yPDgeIthzwW_hXhYjaTTLLBI6o1f8vjV2H8KcgaPt_S8EP-xc59heqBhazRhqMvdWlYkg17-tYbq8&currency=MYR">
         // Required. Replace SB_CLIENT_ID with your sandbox client ID.
     </script>
+<link href="../../src/css/bootstrap.min.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
@@ -34,7 +35,7 @@ $subtotal = 0;
             <div style="background-color:white" class="mt-5 p-3">
                 <p class="h4"><strong>Summary</strong></p><br />
                 <div class="px-3">
-                    <table class="table table-striped">
+                  <table class="table table-striped">
                         <thead class="thead-light">
                             <tr>
                                 <th>Service Name</th>
@@ -59,65 +60,59 @@ $subtotal = 0;
                             $subtotal = $subtotal + $sub;
                         }
                         ?>
-                    </table>
-                </div>
-                <br />
-            </div>
-
-            <div style="background-color:white" class="mt-5 p-3">
-                <?php foreach ($dataAddress as $address) { ?>
-                    <p class="h4"><strong>Delivery Address</strong></p><br />
+                  </table>
+							
+                            <table width="100%" style="border:1px solid black:">
+                            <tr>
+                            <th><p class="h4"><strong>Delivery Address</strong></p><br /></th>
+                            <th><p class="h4"><strong>Delivery fee for service provider(s)：</strong></p><br /></th>
+                            </tr>
+                            <tr>
+                            <td>
+                             <?php foreach ($dataAddress as $address) { ?>
+                    
                     <div class="pl-4">
                         <p><?= $address['Cus_Addr1'] . ', ' . $address['Cus_Addr2'] . ',<br/>' . $address['Cus_PCode'] . ', ' . $address['Cus_City'] . ',<br/>' . $address['Cus_State'] ?>
                             <?php $_SESSION['shipping_address'] = $address['Cus_Addr1'] . ', ' . $address['Cus_Addr2'] . ', ' . $address['Cus_PCode'] . ', ' . $address['Cus_City'] . ', ' . $address['Cus_State'] ?>
                         </p>
-                        <a class="mt-3 btn btn-outline-primary" href="../userProfileView/CustomerEditProfile.php">Change
+                      <a class="mt-3 btn btn-outline-primary" href="../userProfileView/CustomerEditProfile.php">Change
                             Address</a>
                     </div>
+                    
                 <?php } ?>
-            </div>
-
-            <div style="background-color:white" class="mt-5 p-3">
-                <p class="h4"><strong>Delivery fee for service provider(s)：</strong></p><br />
-                <div class="pl-4">
-                    <?php foreach ($data1 as $delivery) { ?>
-                        <em><?= $delivery['spname'] ?><br /></em>
-                    <?php $i++;
-                    } ?><br />
-                    <p class="lead">Delivery fee per Service Provider: RM 6.00</p>
-                    <p class="h5 text-dark">Total Delivery Fee = RM <?= $i * 6.00 ?></p>
                 </div>
-                <?php $total = $subtotal + $i * 6.00;
-                $_SEESION['subtotal'] = $subtotal;
-                $_SESSION['delivery_fee'] = $i * 6 ?>
+                </div>
+                <br />
             </div>
+            </td>
+            <td>
+            
+                  
+                  <div class="pr-5">
+                      <?php foreach ($data1 as $delivery) { ?>
+                          <em><?= $delivery['spname'] ?><br /></em>
+                      <?php $i++;
+                      } ?><br />
+                      <p class="lead">Delivery fee per Service Provider: RM 6.00</p>
+                      <p class="h5 text-dark">Total Delivery Fee = RM <?= $i * 6.00 ?></p>
+                  </div>
+                  <?php $total = $subtotal + $i * 6.00;
+                  $_SEESION['subtotal'] = $subtotal;
+                  $_SESSION['delivery_fee'] = $i * 6 ?>
+             
+  
+              </td>
+            </tr>
+                            </table>
+             
 
+            <table width="100%">
+            <tr>
+            <td>
+            
             <div style="background-color:white" class="my-5 p-3 clearfix">
-                <div class="float-right pr-5">
-                    <table class="text-right">
-                        <tr>
-                            <th class="px-3 h4">Service(s) Subtotal</th>
-                            <td class="h2">RM <?= $subtotal ?></td>
-                        </tr>
 
-                        <tr>
-                            <th class="px-3 h4">Delivery Total</th>
-                            <td class="h2">RM <?= $i * 6.00 ?></td>
-                        </tr>
-                        <tr>
-                            <th class="px-3 h3">Total Payment</th>
-                            <td class="display-4">RM <?= $subtotal + $i * 6.00 ?></td>
-
-                            <?php
-                            $_SESSION['subtotal'] = $subtotal;
-                            $_SESSION['total'] = $total ?>
-                        </tr>
-                    </table>
-                </div>
-
-            </div>
-        </form>
-        <p class="display-4">Pay By: </p>
+             <p class="display-4">Pay By: </p>
         <div id="paypal-button-container" class="col-3"></div>
 
 
@@ -162,11 +157,44 @@ $subtotal = 0;
                 }
             }).render('#paypal-button-container');
             //This function displays Smart Payment Buttons on your web page.
+            
         </script>
+            </td>
+            <td style="margin: left 50%;">
+            <div class="float-right pr-5">
+                    <table class="text-right">
+                        <tr>
+                            <th class="px-3 h4">Service(s) Subtotal</th>
+                            <td class="h2">RM <?= $subtotal ?></td>
+                        </tr>
+
+                        <tr>
+                            <th class="px-3 h4">Delivery Total</th>
+                            <td class="h2">RM <?= $i * 6.00 ?></td>
+                        </tr>
+                        <tr>
+                            <th class="px-3 h3">Total Payment</th>
+                            <td class="display-4">RM <?= $subtotal + $i * 6.00 ?></td>
+
+                            <?php
+                            $_SESSION['subtotal'] = $subtotal;
+                            $_SESSION['total'] = $total ?>
+                        </tr>
+                    </table>
+                </div>
 
 
+            </td>
+            </tr>
+            </table>
 
+
+ 
     </div>
+               
+            </div>
+        </form>
+       
 </body>
 
 </html>
