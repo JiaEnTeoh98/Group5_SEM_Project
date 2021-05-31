@@ -40,6 +40,13 @@ class TrackingController
         return $Tracking->viewAccepted();
     }
 
+    function viewCompleted()
+    {
+        $Tracking = new TrackingModel();
+        $Tracking->R_ID = $_SESSION['Runner_ID'];
+        return $Tracking->viewCompleted();
+    }
+
     function runAccept()
     {
         $Tracking = new TrackingModel();
@@ -69,11 +76,27 @@ class TrackingController
         $Status->TrackDate = $_POST['TrackDate'];
         $Status->TrackProcess = $_POST['TrackProcess'];
         $Status->TrackTime = $_POST['TrackTime'];
-        if ($Status->updateProgress()) {
+        if ($Status->initialUpdate()==0) {
+            if ($Status->updateProgress()) {
             $message = "Success Update!";
             echo "<script type='text/javascript'>alert('$message');
         window.location = '../trackingView/RunUpdate.php?TrackID=" . $_POST['TrackID'] . "';</script>";
         }
+        }
+        elseif ($Status->checkProgress()==0)
+        {
+            if ($Status->updateProgress()) {
+            $message = "Success Update!";
+            echo "<script type='text/javascript'>alert('$message');
+        window.location = '../trackingView/RunUpdate.php?TrackID=" . $_POST['TrackID'] . "';</script>";
+        }
+        }else {
+            $message = "Process has been recorded!";
+            echo "<script type='text/javascript'>alert('$message');
+        window.location = '../trackingView/RunUpdate.php?TrackID=" . $_POST['TrackID'] . "';</script>";
+        }
+        
+        
     }
 
     function updateDeliveryStatus()

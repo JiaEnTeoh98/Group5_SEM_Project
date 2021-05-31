@@ -41,6 +41,13 @@ class TrackingModel
         return DB::run($sql, $args);
     }
 
+    function viewCompleted()
+    {
+        $sql = "select * from Tracking join customer on(Tracking.Cus_ID = customer.Cus_ID) inner join order1 on Tracking.Ord_ID=order1.Ord_ID inner join service on order1.Service_ID=service.Service_ID inner join sp on sp.sp_id=service.sp_id where RunStatus='accepted' AND R_ID=:rid and CusStatus LIKE 'Completed'";
+        $args = [':rid' => $this->R_ID];
+        return DB::run($sql, $args);
+    }
+
     function runAccept()
     {
         $sql = "update Tracking set RunStatus=:RunStatus, R_ID=:rid where TrackID=:TrackID";
@@ -59,6 +66,24 @@ class TrackingModel
     {
         $sql = "insert into Status(TrackID, StatID, TrackDate, TrackProcess,TrackTime) values(:TrackID, :StatID, :TrackDate, :TrackProcess,:TrackTime)";
         $args = [':TrackID' => $this->TrackID, ':StatID' => $this->StatID, ':TrackDate' => $this->TrackDate, ':TrackProcess' => $this->TrackProcess, ':TrackTime' => $this->TrackTime];
+        $stmt = DB::run($sql, $args);
+        $count = $stmt->rowCount();
+        return $count;
+    }
+
+    function checkProgress()
+    {
+        $sql = "select * from Status where TrackID=:TrackID and TrackProcess=:TrackProcess" ;
+        $args = [':TrackID' => $this->TrackID, ':TrackProcess' => $this->TrackProcess];
+        $stmt = DB::run($sql, $args);
+        $count = $stmt->rowCount();
+        return $count;
+    }
+
+    function initialUpdate()
+    {
+        $sql = "select * from Status where TrackID=:TrackID" ;
+        $args = [':TrackID' => $this->TrackID];
         $stmt = DB::run($sql, $args);
         $count = $stmt->rowCount();
         return $count;

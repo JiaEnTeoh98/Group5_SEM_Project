@@ -6,6 +6,7 @@ require_once __DIR__ . '/../../BusinessServiceLayer/trackingController/TrackingC
 $Tracking = new TrackingController();
 $data1 = $Tracking->viewUnaccepted();
 $data2 = $Tracking->viewAccepted();
+$data3 = $Tracking->viewCompleted();
 
 if (isset($_POST['accept'])) {
     $Tracking->runAccept();
@@ -120,6 +121,42 @@ if (isset($_POST['accept'])) {
                 </tr>
             </table>
         </form>
+    </div>
+
+    <div class="mx-auto" style="width: 90%">
+        <hr>
+        <h4 align="center">Completed Job</h4>
+        <form action="" method="POST">
+            <table border="1" width="80%" align="center">
+                <tr>
+                    <th>Tracking No</th>
+                    <th>Order</th>
+                    <th>From
+                    <th>To</th>
+                    <th>Customer Telephone No</th>
+
+                </tr>
+                <tr>
+                    <?php
+                    $i = 1;
+                    foreach ($data3 as $row3) {
+                        echo "<tr>"
+                            . "<td>" . $row3['TrackID'] . "</td>"
+                            . "<td>" . $row3['S_Name'] . "<br/>" . "(Quantity: " . $row2['quantity'] . ")" . "</td>"
+                            . "<td>" .  $row3['spname'] . "<br/>" . $row2['spaddress'] . "</td>"
+                            . "<td>" . $row3['Ship_Add'] . "</td>"
+                            . "<td>" . $row3['Cus_Telno'] . "</td>";
+                    ?>
+
+                    <?php
+                        $i++;
+                        echo "</tr>";
+                    }
+                    ?>
+                </tr>
+            </table>
+        </form>
+    </div>
 </body>
 
 </html>
