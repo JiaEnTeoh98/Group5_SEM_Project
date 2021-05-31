@@ -44,8 +44,7 @@ if (isset($_POST['sortFromLow'])) {
             <hr />
             <!-- <div class="d-flex justify-content-between bd-highlight mb-3"> -->
             <div class="row d-flex flex-wrap mx-0">
-              
-                <table class="table">
+            <table class="table">
                     <thead class="">
                     <tr class="h5">
                        
@@ -56,28 +55,21 @@ if (isset($_POST['sortFromLow'])) {
                            
                         </tr>
                     </thead>
-                
-            
-               
-<!--            tambah table dekat sini, cuma problem dkt ahref -->
-                    
+
                 <?php foreach ($data as $row) { ?>
-                    <tr>
+                <tr>
                     <div style="width: 18%" class="px-2 mb-5 ml-4 bd-highlight">
-                        <a href="../orderView/CusProductInfo.php?Service_ID=<?= $row['Service_ID'] ?>"> 
-                            
-                        <td><img class="col-12" height="250" src="<?= $row['S_Photo'] ?>" /> </td>
+                        <a href="../orderView/CusProductInfo.php?Service_ID=<?= $row['Service_ID'] ?>">
+                           <td> <img class="col-12" height="250" src="<?= $row['S_Photo'] ?>" /></td>
                             <div class="mx-3">
-                                <td><p class="pt-1 h5"><a href="../orderView/CusProductInfo.php?Service_ID=<?= $row['Service_ID'] ?>"> <?= $row['S_Name'] ?></a></p> </td>
-                                <td><p class=" lead mt-0"> <a href="../orderView/CusProductInfo.php?Service_ID=<?= $row['Service_ID'] ?>"> Unit Price: RM <?= $row['Unit_Price'] ?></a></p></td>
-                            </div>  
+                             <td>   <p class="pt-1 h5"><?= $row['S_Name'] ?></p>
+                                <p class=" lead mt-0">Unit Price: RM <?= $row['Unit_Price'] ?></p><td>
+                            </div>
                         </a>
-                        </div>
-                </tr>
+                    </div>
+                    </tr>
                 <?php } ?>
-                        
-                
-                </table>  
+                </table>
             </div>
 
 
