@@ -36,7 +36,7 @@ if (isset($_POST['delete'])) {
 
             </ul>
         </nav>
-        <h5>Service Provider Homepage > Update Service</h5>
+        <h5>Service Providers Homepage > Update Service</h5>
         <a href="../userProfileView/SPHomePage.php">
             <span class="material-icons md-48 text-primary my-3">
                 arrow_back

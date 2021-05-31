@@ -41,9 +41,11 @@ class manageServiceController
             $ser->S_Photo = 'data:image/' . $imageFileType . ';base64,' . $image_base64;
         }
         $ser->editService();
-        echo "<script>alert('Updated Successfully')</script>";
-        header("Location: ../../ApplicationLayer/manageServiceView/SPEditService.php?id=" . $_SESSION['EditID']);
+        $message = "Update Successfully!";
+        echo "<script type = 'text/javascript'> alert('$message');
+        window.location = ' ../../ApplicationLayer/manageServiceView/SPEditService.php?id=" . $_SESSION['EditID']."';</script>";
 
+        
         exit;
     }
 
